@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use App\Models\Markdown;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +18,15 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $titles = DB::table('markdowns')->pluck('title', 'id');
+    return view('welcome', ['titles' => $titles]);
 });
 
-// For v1 Demo
-Route::post('/', function(Request $request) {
-    return Str::of($request->getContent())->markdown([
-        'html_input' => 'strip',
-        'allow_unsafe_links' => false,
-    ]);
+Route::get('/articles/{id}', function ($id) {
+    $content = Markdown::find($id);
+    return view('article', ['article' => $content]);
+});
+
+Route::get('/env', function () {
+    return '<pre>' . print_r($_ENV, true) . '</pre>';
 });
