@@ -9,10 +9,6 @@ RUN docker-php-ext-install bcmath pdo pdo_mysql && \
     
 COPY apache2/sites-enabled/*.conf /etc/apache2/sites-enabled/
 COPY --from=build /app/ /var/www/html/
-COPY .env.prod /var/www/html/.env
-
-ENV APP_DEBUG=false
-ENV APP_ENV=prod
 
 RUN php artisan key:generate && \
     php artisan config:cache && \

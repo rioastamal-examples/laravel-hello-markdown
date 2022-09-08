@@ -1,5 +1,6 @@
 laravel/vendor
 laravel/.env
+laravel/.env.*
 laravel/storage/app/*
 laravel/storage/framework/cache/*
 laravel/storage/framework/sessions/*
