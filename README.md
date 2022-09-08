@@ -42,7 +42,7 @@ cd ../
 docker build -t php-mysql-ext:8.1-apache -f Dockerfile.local .
 ```
 
-Check image that has been created.
+Check the image that has been created.
 
 ```sh
 docker images
@@ -52,8 +52,20 @@ docker images
 REPOSITORY                               TAG          IMAGE ID       CREATED        SIZE
 php-mysql-ext                            8.1-apache   6039dbf8b82e   14 hours ago   459MB
 public.ecr.aws/docker/library/composer   2.4          7c7139e3be94   6 days ago     200MB
-public.ecr.aws/docker/library/php        8.1-apache   a35da485f274   5 
+public.ecr.aws/docker/library/php        8.1-apache   a35da485f274   5 weeks ago    458MB
 ```
+
+## Build Docker Image for Production
+
+We will package entire files on the project to the container image. We will build the image using file `Dockerfile.`
+
+As an example we will tag this container image as version `1.0`.
+
+```sh
+docker build -t laravel-markdown:1.0 .
+```
+
+Then you can push `laravel-markdown:1.0` to the registry and start using it on your production deployment.
 
 ## Create configuration
 
